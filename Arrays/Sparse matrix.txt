@@ -1,0 +1,41 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int r,c,i,j,k=0;
+    int b[3][100];
+    cout<<"Enter the number of rows : ";
+    cin>>r;
+    cout<<"\nEnter the number of columns : ";
+    cin>>c;
+    int arr[r][c];
+    cout<<"Enter the elements of the array\n";
+    for(i = 0; i<r;i++)
+    {
+        for(j=0;j<c;j++)
+        {
+            cin>>arr[i][j];
+        }
+    }
+    for(i=0;i<r;i++)
+    {
+        for(j=0;j<c;j++)
+        {
+            if(arr[i][j]!= 0)
+            {
+                b[0][k] = i;
+                b[1][k] = j;
+                b[2][k] = arr[i][j];
+                k++;
+            }
+        }
+    }
+    cout<<"\nSparse matrix is as follows :- \n\n";
+    cout<<"ROW  COLUMN   VAUE\n";
+    for(i=0;i<k;i++)
+    {
+        cout<<b[0][i]<<"\t"<<b[1][i]<<"\t"<<b[2][i]<<endl;
+    }
+}

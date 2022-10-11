@@ -1,0 +1,95 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int r,c,i,j,choice,delete_num,count =0,a,b;
+    
+    cout<<"Enter the number of rows : ";
+    cin>>r;
+    cout<<"\nEnter the number of columns : ";
+    cin>>c;
+    int arr[r][c];
+    cout<<"Enter the elements\n";
+    for(i = 0; i<r;i++)
+    {
+        for(j=0;j<c;j++)
+        {
+            cin>>arr[i][j];
+        }
+    }
+    do
+    {
+    cout<<"Enter your choice :\n1. Update an Element\n2. Delete an element\n3. Search an element\n4. Print elements\n5. Exit"<<endl;
+    cin>>choice;
+    switch(choice)
+    {
+        case 1:
+            cout<<"Enter the row and column of the element you want to update : ";
+            cin>>a>>b;
+            cout<<"\nEnter the updated value : ";
+            cin>>delete_num;
+            arr[a-1][b-1] = delete_num;
+            cout<<"\nElement updated\n\n";
+            break;
+            
+        case 2:
+            cout<<"Enter the element you want to delete : ";
+            cin>>delete_num;
+            for(i=0;i<r;i++)
+            {
+            for(j=0;j<c;j++)
+            {
+                if(delete_num == arr[i][j])
+                {
+                    arr[i][j] = 0;
+                }
+            }
+            }
+            cout<<"\nElement deleted\n\n";
+            
+        break;
+        
+        case 3:
+            cout<<"Enter the element you want to search : ";
+            cin>>delete_num;
+            for(i=0;i<r;i++)
+            {
+            for(j=0;j<c;j++)
+            {
+                if(delete_num == arr[i][j])
+                {
+                    cout<<"\nElement found at \nRow : "<<i+1<<"\nColumn : "<<j+1<<"\n";
+                    count++;
+                    break;
+                }
+            }
+            }
+            if(count == 0)
+            {
+                cout<<"Element not in the list"<<endl;
+            }
+            break;
+            
+        case 4:
+            cout<<"\n\nElements are as follows \n\n";
+            for(i = 0; i<r;i++)
+            {
+            for(j=0;j<c;j++)
+            {
+                cout<<arr[i][j]<<"\t";
+            }
+            cout<<endl<<endl;
+            }
+        break;
+        case 5:
+        break;
+        default:
+        cout<<"Enter a valid choice \n";
+        break;
+        
+    }
+    
+    }while(choice!=5);
+}

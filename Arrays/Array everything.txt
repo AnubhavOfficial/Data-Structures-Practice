@@ -1,0 +1,165 @@
+#include <iostream>
+
+using namespace std;
+void insert(int arr[], int size)
+{
+    
+    int x,n,i,index;
+    cout<<"Enter an element to be inserted"<<endl;
+    cin>>x;
+    
+    cout<<"Where you want to enter it\n1. Starting\n2. Ending\n3. Middle at a particular index\n";
+    cin>>n;
+    
+    switch(n)
+    {
+        case 1:
+            for(i=size;i>=0;i--)
+            {
+                arr[i+1]=arr[i];
+            
+            }
+            
+            arr[0]=x;
+            size++;
+            cout<<endl<<"Elements are as follows"<<endl;
+            for(i=0;i<size;i++)
+            {
+                cout<<arr[i]<<endl;
+            }
+            break;
+        case 2:
+            int y;
+            cout<<"Enter 2nd number "<<endl;
+            cin>>y;
+            arr[size]=x;
+            arr[size+1]=y;
+            cout<<endl<<"Elements after insertion are as follows"<<endl;
+            for(i=0;i<size+2;i++)
+            {
+                cout<<arr[i]<<endl;
+            }
+            break;
+        case 3:
+        cout<<"Enter the index where you want to insert"<<endl;
+        cin>>index;
+        for(i=size;i>=index;i--)
+        {
+            arr[i+1]=arr[i];
+        }
+        arr[index]=x;
+        cout<<"Elements are as follows "<<endl;
+        for(i=0;i<size+1;i++)
+        {
+            cout<<arr[i]<<endl;
+        }
+    }
+}
+void Delete(int arr[], int size)
+{
+    int i,n,x;
+    cout<<"Where you want to delete element \n1. Starting\n2. Ending\n3. Middle at a particular index\n";
+    cin>>n;
+    
+    switch(n)
+    {
+        case 1:
+        for(i=0;i<size;i++)
+        {
+            arr[i]=arr[i+1];
+        }
+        size--;
+        cout<<endl<<"Elements after deletion at beginning : "<<endl<<endl;
+        for(i=0;i<size;i++)
+        {
+            cout<<arr[i]<<endl;
+        }
+        break;
+        case 2:
+        size--;
+        cout<<endl<<"Elements after deletion at end : "<<endl<<endl;
+        for(i=0;i<size;i++)
+        {
+            cout<<arr[i]<<endl;
+        }
+        break;
+        case 3:
+        cout<<"Enter the index which you want to delete"<<endl;
+        cin>>x;
+        for(i=x;i<size;i++)
+        {
+            arr[i]=arr[i+1];
+        }
+        size--;
+        cout<<"Elemets after deleting "<<x<<" index :"<<endl<<endl;
+        for(i=0;i<size;i++)
+        {
+            cout<<arr[i]<<endl;
+        }
+        
+    }
+    
+}
+void search(int arr[],int size)
+{
+    int i,n,count =0;
+    cout<<"Enter the element you want to search"<<endl;
+    cin>>n;
+    for(i=0;i<size;i++)
+    {
+        if(arr[i]==n)
+        {
+            cout<<endl<<n<<" found at "<<i<<" index"<<endl;
+            count = count + 1;
+        }
+        
+    }
+    if(count == 0)
+    {
+        cout<<"Element not in the Array. Please try again"<<endl;
+    }
+    
+}
+void print(int arr[], int size)
+{
+    int i;
+    cout<<"Elements are as follows :- "<<endl;
+    for(i=0;i<size;i++)
+    {
+        cout<<arr[i]<<endl;
+    }
+}
+int main()
+{
+   int n,x,i;
+   cout<<"Enter the size of array"<<endl;
+   cin>>n;
+   int a[n];
+   cout<<"Enter the Elements"<<endl;
+   for(i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+   cout<<"Enter what you want to do\n1. Insertion\n2. Deletion\n3. Search\n4. Print elements\n";
+   cin>>x;
+   switch(x)
+   {
+       case 1:
+       insert(a,n);
+       break;
+       case 2:
+       Delete(a,n);
+       break;
+       case 3:
+       search(a,n);
+       break;
+       case 4:
+       print(a,n);
+       break;
+       default:
+       cout<<"Enter a valid number"<<endl;
+       break;
+   }
+   
+  
+}
