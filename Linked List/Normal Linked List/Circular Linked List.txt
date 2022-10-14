@@ -1,0 +1,224 @@
+#include<iostream>
+using namespace std;
+
+struct node{
+    int data;
+    node* next ;
+};
+
+node* head = nullptr;
+
+int main()
+{
+    int number;
+    node* s = new node;
+    
+    cout<<"Enter 1st element"<<endl;
+    cin>>s->data;
+    s->next = nullptr;
+    head = s;
+    cout<<"How many elements do you want to enter"<<endl;
+    cin>>number;
+    for(int i=0;i<number;i++)
+    {
+        node* head2 = new node();
+        cout<<"Enter next element"<<endl;
+        cin>>head2->data;
+        head2->next = head;
+        s->next = head2;
+        s = head2;
+        
+    }
+    
+    
+    int n,choice,before;
+    int sample = 0;
+    n=0;
+    node* newnode = new node;
+    node* head1;
+    while(n!=5)
+    {
+    cout<<"\nEnter your choice\n1. Insertion\n2. Deletion\n3. Search\n4. Print\n5. Exit"<<endl;
+    cin>>n;
+    switch(n)
+    {
+        case 1:
+        {
+        int item;
+        cout<<"Enter the element you want to insert\n";
+        cin>>item;
+        cout<<"Where do you want to insert element \n1. Starting\n2. Ending\n3. Middle at a particular index\n"<<endl;
+        cin>>choice;
+        
+        switch(choice)
+        {
+            
+            case 1:
+            head1 = head;
+            do
+            {
+                if(head1->next ==head)
+                {
+                    newnode->data = item;
+                    newnode->next = head;
+                    head = newnode;
+                    head1->next = newnode;
+                    break;
+                }
+                head1 = head1->next;
+            
+            }while(head1!=head);
+            
+            cout<<endl<<"Printing elements"<<endl<<endl;
+            head1 = head;
+            do
+            {
+                
+                    cout<<head1->data<<endl;
+                    head1 = head1->next;
+            
+            }while(head1 != head);
+            break;
+            
+            case 2:
+            
+             
+                head1 = head;
+            
+            do{
+               
+                
+                if(head1->next == head)
+                {
+                    newnode->data = item;
+                    newnode->next = head;
+                    head1->next = newnode;
+                    
+                    break;
+                }
+                head1 = head1->next;
+            }while(head1!=head);
+            head1 = head;
+            cout<<"Printing Elements \n\n";
+            do
+            {
+            cout<<head1->data<<endl;
+            head1 = head1->next;
+            }while(head1!= head);
+            break;
+            
+            case 3:
+                
+                    cout<<"Enter the element before which you want to insert\n";
+                    cin>>before;
+                    head1 = head;
+                    do
+                    {
+                        
+                        if(head1->next->data == before)
+                        {
+                            newnode->data= item;
+                            newnode->next = head1->next;
+                            head1->next = newnode;
+                            break;
+                        }
+                        head1 = head1->next;
+                
+                    }while(head1!=head);
+                    cout<<"\n\n Printing elements\n\n";
+                    head1 = head;
+                    do
+                    {
+                    cout<<head1->data<<endl;
+                    head1 = head1->next;
+                    }while(head1!= head);
+                break;
+            
+        }
+        
+    }
+    break;
+    case 2:
+    cout<<"From where do you want to delete element  \n1. Starting\n2. Ending\n3. Middle at a particular index\n"<<endl;
+    cin>>choice;
+    switch(choice)
+    {
+        case 1:
+        head1 = head;
+            do
+            {
+                if(head1->next ==head)
+                {
+                    
+                    head = head->next;
+                    head1->next = head;
+                    break;
+                }
+                head1 = head1->next;
+            
+            }while(head1!=head);
+            
+            cout<<endl<<"Printing elements"<<endl<<endl;
+            head1 = head;
+            do
+            {
+                
+                    cout<<head1->data<<endl;
+                    head1 = head1->next;
+            
+            }while(head1 != head);
+            break;
+        
+        case 2:
+        head1 = head;
+            
+            do{
+               
+                
+                if(head1->next->next == head)
+                {
+                    
+                    head1->next = head;
+                    break;
+                }
+                head1 = head1->next;
+            }while(head1!=head);
+            cout<<"\nPrinting Elements\n\n";
+            head1 = head;
+        do
+            {
+            cout<<head1->data<<endl;
+            head1 = head1->next;
+            }while(head1!= head);
+            break;
+            
+            case 3:
+            cout<<"Enter the element you want to delete\n\n";
+            cin>>before;
+            head1 = head;
+                    do
+                    {
+                        
+                        if(head1->next->data == before)
+                        {
+                            head1->next = head1->next->next;
+                            break;
+                        }
+                        head1 = head1->next;
+                
+                    }while(head1!=head);
+                   
+                   head1 = head;
+                    cout<<"\n\n Printing elements\n\n";
+                    do
+                    {
+                    cout<<head1->data<<endl;
+                    head1 = head1->next;
+                    }while(head1!= head);
+                break;
+    }
+    
+    
+}
+}
+}
