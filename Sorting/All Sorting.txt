@@ -1,0 +1,294 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+void quicksort(int arr[], int first,int last)
+{
+    if(first >last)
+    {
+        return;
+    }
+    
+    int i=-1,j=0,temp;
+    for(j=0;j<last;j++)
+    {
+        if(arr[j]<= arr[last])
+        {
+            i++;
+            temp = arr[j];
+            arr[j] = arr[i];
+            arr[i] = temp;
+        }
+    }
+    temp = arr[i+1];
+    arr[i+1] = arr[last];
+    arr[last] = temp;
+    quicksort(arr,first, i);
+    quicksort(arr,i+2,last);
+    
+}
+void merge(int A[], int low, int high, int mid)
+{
+    int i, j, k, c[50];
+    i = low;
+    k = low;
+    j = mid + 1;
+    while (i <= mid && j <= high)
+    {
+        if (A[i] < A[j])
+        {
+            c[k] = A[i];
+            k++;
+            i++;
+        }
+        else
+        {
+            c[k] = A[j];
+            k++;
+            j++;
+        }
+    }
+    while (i <= mid)
+    {
+        c[k] = A[i];
+        k++;
+        i++;
+    }
+    while (j <= high)
+    {
+        c[k] = A[j];
+        k++;
+        j++;
+    }
+    for (i = low; i < k; i++)
+    {
+        A[i] = c[i];
+    }
+}
+void mergesort(int arr[],int left, int right)
+{
+    if(left<right)
+    {
+    int mid;
+    mid = ( left + right) /2;
+    mergesort(arr , left , mid);
+    mergesort(arr , mid+1 , right);
+    
+    merge(arr,left,right,mid);
+        
+    }
+    
+    return;
+    
+}
+int main()
+{
+    int n,i,choice,j,temp,k,count=0;
+    cout<<"Enter the number of elements you want to enter : ";
+    cin>>n;
+    int mainarr[n],arr[n],barr[n],carr[n],darr[n],earr[n],farr[n];
+    cout<<endl<<"Enter the elements :- \n";
+    for(i=0;i<n;i++)
+    {
+        cin>>mainarr[i];
+    }
+    do{
+    cout<<"Make a choice :-\n1. Bubble Sort\n2. Selection Sort\n3. Insertion Sort\n4. Shell Sort\n5. Merge Sort\n6. Quick Sort\n7. Print Array\n8. Exit\n";
+    cin>>choice;
+    switch(choice)
+    {
+        case 1:
+        {
+            for(i=0;i<n;i++)
+            {
+                arr[i] = mainarr[i];
+            }
+            for(i=0;i<n-1;i++)
+            {
+                for(j=0;j<n-i-1;j++)
+                {
+                    if(arr[j]>arr[j+1])
+                    {
+                        temp = arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = temp;
+                    }
+                }
+            }
+            cout<<"Array after :- \tBUBBLE SORT :\n";
+            for(i=0;i<n;i++)
+            {
+                cout<<arr[i]<<endl;
+            }
+            cout<<endl<<endl;
+            break;
+    }
+    case 2:
+    {
+        for(i=0;i<n;i++)
+        {
+            carr[i] = mainarr[i];
+        }
+        for(i=0;i<n;i++)
+        {
+            temp = carr[i];
+            for(j=i+1;j<n;j++)
+            {
+                if(temp>carr[j])
+                {
+                    
+                    temp = carr[j];
+                    k = j;
+                }
+            }
+            if(temp != carr[i])
+            {
+                int temp2;
+                temp2 = carr[i];
+                carr[i] = temp;
+                carr[k] = temp2;
+            }
+            
+        }
+        cout<<"Array after :- \tSELECTION SORT :\n";
+        for(i=0;i<n;i++)
+        {
+            cout<<carr[i]<<endl;
+        }
+        cout<<"\n\n";
+        break;
+    }
+    case 3:
+    {
+        for(i=0;i<n;i++)
+        {
+            barr[i] = mainarr[i];
+        }
+        for(i=0;i<n-1;i++)
+        {
+            /*for(j=i+1;j<n;j++)
+            {
+                if(barr[i]>barr[j])
+                {
+                    for(k=0;k<i;k++)
+                    {
+                        if(barr[k]>barr[j])
+                        {
+                            
+                        }
+                    }
+                }
+            }*/
+            if(barr[i]>barr[i+1])
+            {
+                for(j=0;j<=i;j++)
+                {
+                    if(barr[j]>barr[i+1])
+                    {
+                        temp = barr[j];
+                        barr[j] = barr[i+1];
+                        barr[i+1] = temp;
+                    }
+                }
+            }
+        }
+        cout<<"Array after :- \tINSERTION SORT :\n";
+        for(i=0;i<n;i++)
+        {
+            cout<<barr[i]<<endl;
+        }
+        cout<<"\n\n";
+        break;
+    }
+    case 4:
+    {
+        for(i=0;i<n;i++)
+        {
+            darr[i] = mainarr[i];
+        }
+        
+        int gap;
+        gap = floor(n/2);
+        while(gap>0)
+        {
+            for(i=0;i<n-gap;i++)
+            {
+                if(darr[i]>darr[i+gap])
+                {
+                    temp = darr[i];
+                    darr[i] = darr[i+gap];
+                    darr[i+gap] = temp;
+                }
+            }
+            gap = floor(gap/2);
+            if((gap == 0) && (count == 0))
+            {
+                count++;
+                gap = 1;
+            }
+        }
+        count--;
+        /*for(i=0;i<n-1;i++)
+        {
+            if(darr[i]>darr[i+1])
+            {
+                temp = darr[i];
+                darr[i] = darr[i+1];
+                darr[i+1] = temp;
+            }
+        }*/
+        cout<<"Array after :- \tSHELL SORT : \n";
+        for(i=0;i<n;i++)
+        {
+            cout<<darr[i]<<endl;
+        }
+        cout<<"\n\n";
+        break;
+    }
+    case 5:
+    {
+        for(i=0;i<n;i++)
+        {
+            earr[i] = mainarr[i];
+        }
+        
+        mergesort(earr,0,n-1);
+        cout<<"\nArray after :- \t MERGE SORT : \n";
+        for(i=0;i<n;i++)
+        {
+            cout<<earr[i]<<endl;
+        }
+        cout<<"\n\n";
+        break;
+    }
+    case 6:
+    {
+        for(i=0;i<n;i++)
+        {
+            farr[i] = mainarr[i];
+        }
+        
+        quicksort(farr,0,n-1);
+        cout<<"\nArray after :- \t QUICK SORT : \n";
+        for(i=0;i<n;i++)
+        {
+            cout<<farr[i]<<endl;
+        }
+        cout<<"\n\n";
+        break;
+    }
+    case 7:
+    {
+        cout<<"Elements in the array are as follows :- \n";
+        for(i=0;i<n;i++)
+        {
+            cout<<mainarr[i]<<endl;
+        }
+        cout<<"\n\n";
+        break;
+    }
+    
+    
+    
+    }
+}while(choice!=8);
+}

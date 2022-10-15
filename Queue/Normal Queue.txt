@@ -1,0 +1,75 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int max,choice,item,i;
+    cout<<"Enter the maximum size of Queue : ";
+    cin>>max;
+    int queue[max];
+    int rear = -1;
+    int front = 0;
+    do{
+    
+    cout<<"\nEnter your choice\n1. Insert\n2. Delete\n3. Display\n4. Exit\n";
+    cin>>choice;
+    switch(choice)
+    {
+        case 1:
+        
+        if(rear == max-1)
+        {
+            cout<<"Queue Full......\nDelete some elements first\n\n";
+        }
+        else
+        {
+            cout<<"Enter the element you want to Insert : ";
+            cin>>item;
+            rear = rear + 1;
+            queue[rear] = item;
+        }
+        break;
+        
+        case 2:
+        if((rear == -1) && (front == -1))
+        {
+            cout<<"Queue Empty......\nEnter some elements first\n\n";
+        }
+        else
+        {
+            if(rear == -1)
+            {
+                cout<<"Queue Empty......\nEnter some elements first\n\n";
+                break;
+            }
+            cout<<queue[front]<<" is deleted from the Queue\n\n";
+            for(i=0;i<rear;i++)
+            {
+                queue[i]=queue[i+1];
+            }
+            rear = rear -1;
+        }
+        break;
+        case 3:
+        cout<<"\n\nQueue is as follows\n\n";
+        for(i=0;i<rear;i++)
+        {
+            cout<<"________";
+        }
+        cout<<endl;
+        for(int i = 0;i<=rear;i++)
+        {
+            cout<<"| "<<queue[i]<<" | ";
+            
+        }
+        cout<<endl;
+        for(i=0;i<rear;i++)
+        {
+            cout<<"________";
+        }
+        break;
+    }
+    }while(choice!=4);
+    
+}

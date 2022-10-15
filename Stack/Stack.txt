@@ -1,0 +1,55 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int top,max,choice,item;
+    cout<<"Enter the maximum size of stack : ";
+    cin>>max;
+    int stack[max];
+    top = -1;
+    do{
+    
+    cout<<"\nEnter your choice\n1. Push\n2. Pop\n3. Display\n4. Exit\n";
+    cin>>choice;
+    switch(choice)
+    {
+        case 1:
+        if(top == max-1)
+        {
+            cout<<"Stack Full......\nDelete some elements first\n\n";
+        }
+        else
+        {
+            cout<<"Enter the element you want to Push : ";
+            cin>>item;
+            top++;
+            stack[top] = item;
+            
+        }
+        break;
+        case 2:
+        if(top == -1)
+        {
+            cout<<"Stack Empty......\nEnter some elements first\n\n";
+        }
+        else
+        {
+            
+            cout<<stack[top]<<" is poped from the Stack\n\n";
+            top--;
+        }
+        break;
+        case 3:
+        cout<<"\n\nStack is as follows\n\n______";
+        for(int i = top;i!=-1;i--)
+        {
+            cout<<"\n| "<<stack[i]<<" |"<<endl<<"______";
+            
+        }
+        break;
+    }
+    }while(choice!=4);
+    
+}
